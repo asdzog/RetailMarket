@@ -1,8 +1,8 @@
 from rest_framework.permissions import BasePermission
 
 
-class IsOwner(BasePermission):
-    message = "Ошибка! Вы не являетесь автором!"
+class IsActiveModer(BasePermission):
+    message = "Ошибка! Доступ разрешен только активным сотрудникам!"
 
     def has_object_permission(self, request, view, obj):
-        return obj.user == request.user
+        return request.user and request.user.is_staff and request.user.is_active
