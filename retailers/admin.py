@@ -22,7 +22,7 @@ class NetworkNodeAdmin(admin.ModelAdmin):
 
     def get_city(self, obj):
         return obj.contact.city if obj.contact else '-'
-    get_city.short_description = 'City'
+    get_city.short_description = 'Город'
 
     def clear_debts(self, request, queryset):
         queryset.update(debt=0)
