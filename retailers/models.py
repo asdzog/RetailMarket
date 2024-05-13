@@ -48,10 +48,14 @@ class NetworkNode(models.Model):
     level = models.IntegerField(default=0, verbose_name="Уровень иерархии сети")
 
     def clean(self):
-        if self.supplier and self.level != self.supplier.level + 1:
-            raise ValidationError(
-                f"Уровень должен быть {self.supplier.level + 1}, т.к. поставщик имеет уровень {self.supplier.level}.")
-        if not self.supplier and self.level != 0:
+        # if self.supplier and self.level != self.supplier.level + 1:
+        #     raise ValidationError(
+        #         f"Уровень должен быть {self.supplier.level + 1}, т.к. поставщик имеет уровень {self.supplier.level}.")
+        # if not self.supplier and self.level != 0:
+        #     raise ValidationError("Уровень должен быть 0 для узлов сети без поставщика.")
+        if self.supplier and not self.level == self.supplier.level + 1:
+            raise ValidationError("Уровень должен быть на 1 выше уровня поставщика.")
+        elif not self.supplier and not self.level == 0:
             raise ValidationError("Уровень должен быть 0 для узлов сети без поставщика.")
 
     def save(self, *args, **kwargs):
