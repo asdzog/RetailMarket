@@ -6,10 +6,10 @@
 
 ## Технологии
 
-- Python 3.8+
-- Django 3.2+
-- Django REST Framework 3.12+
-- PostgreSQL 14+
+- Python 3.11+
+- Django 5.0+
+- Django REST Framework 3.15+
+- PostgreSQL 15+
 
 ## Установка
 
@@ -26,6 +26,10 @@ source venv/bin/activate  # Для Windows используйте `venv\Scripts\
 Установка зависимостей
 ```bash
 pip install -r requirements.txt
+```
+Создание суперпользователя (согласно настройкам, указанным в ```.env``` )
+```bash
+python manage.py csu
 ```
 ### Настройка базы данных
 Измените настройки в settings.py для подключения к вашей PostgreSQL базе данных.
