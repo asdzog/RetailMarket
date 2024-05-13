@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
@@ -54,3 +55,5 @@ class NetworkNodeListAPIView(generics.ListAPIView):
     serializer_class = NetworkNodeSerializer
     queryset = NetworkNode.objects.all()
     permission_classes = [IsAuthenticated, IsActiveModer]
+    filter_backends = (DjangoFilterBackend,)
+    filterset_fields = ['contact__country']

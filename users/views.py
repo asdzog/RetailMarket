@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from users.models import User
-from users.permissions import IsOwner
+
 from users.serializers import UserSerializer, ProfileViewSerializer
 
 
@@ -15,7 +15,7 @@ class UserCreateAPIView(generics.CreateAPIView):
 
 
 class UserProfileView(APIView):
-    permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes = [IsAuthenticated]
 
     @swagger_auto_schema(
         security=[{"Bearer": []}],
